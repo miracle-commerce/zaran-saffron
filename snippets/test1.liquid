@@ -1,0 +1,59 @@
+{%- assign product = all_products[section.settings.product] -%}
+
+{%- capture section_settings -%}
+{
+  "enableHistoryState": false,
+  "usePlaceholder": {% if product == empty %}true{% else %}false{% endif %},
+  "templateSuffix": {{ product.template_suffix | json }},
+  "showInventoryQuantity": {{ section.settings.show_inventory_quantity | json }},
+  "showSku": {{ section.settings.show_sku | json }},
+  "inventoryQuantityThreshold": {{ section.settings.inventory_quantity_threshold }},
+  "showPriceInButton": {{ section.settings.show_price_in_button | json }},
+  "showPaymentButton": {{ section.settings.show_payment_button | json }},
+  "useAjaxCart": {% if settings.cart_type == 'drawer' %}true{% else %}false{% endif %}
+}
+{%- endcapture -%}
+
+<div style="">
+        {%- if product.media.size > 0 -%}
+          <a href="{{ product.url }}" class="FeaturedProduct__Gallery">
+            {%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,300,400,600,700,800,900,1000', image: product.featured_media -%}{%- endcapture -%}
+
+            {%- assign media_aspect_ratio = product.featured_media.aspect_ratio | default: product.featured_media.preview_image.aspect_ratio -%}
+            <div class="AspectRatio" style="max-width: {{ product.featured_media.preview_image.width }}px; --aspect-ratio: {{ media_aspect_ratio }}">
+              {% assign image_url = product.featured_media | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+
+              <img class="Image--lazyLoad Image--fadeIn" data-src="{{ image_url }}" data-widths="[{{ supported_sizes }}]" data-sizes="auto" alt="{{ product.featured_media.alt | escape }}">
+              <span class="Image__Loader"></span>
+
+              <noscript>
+                <img src="{{ product.featured_media | img_url: '600x' }}" alt="{{ product.featured_media.alt | escape }}">
+              </noscript>
+            </div>
+          </a>
+        {%- endif -%}
+
+        <div class="FeaturedProduct__Info">
+          {%- render 'product-meta', product: product, show_description: section.settings.show_description -%}
+
+          {%- if product.template_suffix != 'coming-soon' -%}
+            {%- render 'product-form', product: product -%}
+          {%- endif -%}
+
+          {%- if section.settings.show_description and section.settings.description_below_add_to_cart -%}
+            <div class="ProductMeta__Description Rte">
+              {%- comment -%}
+              We have figured out that some merchants were copy-pasting huge chunk of code into the product description,
+              which can make the theme crashes if it contains some special attributes used by the theme. We therefore make sure to process this
+              {%- endcomment -%}
+
+              {{ product.description | replace: 'data-section-type', 'data-section-type-placeholder' }}
+            </div>
+          {%- endif -%}
+
+          <div class="FeaturedProduct__ViewWrapper">
+            <a href="{{ product.url }}" class="Link Link--underline">{{ 'home_page.featured_product.view_product' | t }}</a>
+          </div>
+        </div>
+
+</div>
