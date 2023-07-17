@@ -11130,4 +11130,16 @@ shopify-payment-terms {
   color: #fff; 
   display: inline-block; 
   padding: 5px 20px; 
+  text-transform: initial;
+}
+
+.ProductItem__SubscriptionUnitPrice-wrapper{
+  margin-top: 5px;
+}
+
+.ProductItem__SubscriptionUnitPrice-wrapper a{
+  color: #ffd200;
+  font-size: 14px; 
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
 }

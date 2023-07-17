@@ -12,7 +12,7 @@
 	{% else %}
 		{% assign subscription_active = false %}
 	{% endif %}
-	{% if widget_settings.select_subscription_first == 'false' %}
+	{% if widget_settings.select_subscription_first == 'false' and template.suffix != 'selected_subscription' %}
 		{% assign select_subscription_first = false %}
 	{% else %}
 		{% assign select_subscription_first = true %}

@@ -1,13 +1,21 @@
+{% comment %} Get Product Unit Price {% endcomment %}
 {% if product.metafields.custom.pack_weight.value != blank %}
   {% assign product_pack_weight = product.metafields.custom.pack_weight.value %}
   {% assign product_pack_unit_price = product.price | divided_by: product_pack_weight %}
   {% if product.compare_at_price > product.price %}
     {% assign product_pack_unit_compare_at_price = product.compare_at_price | divided_by: product_pack_weight %}
   {% endif %}
+
+  {% comment %} Get Subscription Unit Price {% endcomment %}
+  {% if product.metafields.subscriptions.has_subscription.value == "True" and product.metafields.subscriptions.discount_percentage.value != 0 %}
+    {% assign product_pack_subscription_unit_price = 100 | minus: product.metafields.subscriptions.discount_percentage.value | times: product_pack_unit_price | divided_by: 100 %}
+  {% endif %}
 {% else %}
   {% assign product_pack_weight = false %}
 {% endif %}
-<div class="ProductItem {% if use_horizontal %}ProductItem--horizontal{% endif %}" data-item-type="product" data-pack-weight="{{product.metafields.custom.pack_weight.value}}" data-pack-unit-price = "{{ product_pack_unit_price}}">
+{% comment %} End Product Unit Price {% endcomment %}
+
+<div class="ProductItem {% if use_horizontal %}ProductItem--horizontal{% endif %}" data-item-type="product">
   <div class="ProductItem__Wrapper">
     {%- comment -%}
     We are using LazySizes to efficiently choose the most appropriate image in the set. However, because internally LazySizes uses srcset, we need to make
@@ -191,6 +199,12 @@
               {% endif %}
             {%- endif -%}
           </div>
+          {% comment %} Showing Subscription Unit Price {% endcomment %}
+          
+          {% if product_pack_subscription_unit_price > 0 %}
+            <div class="ProductItem__SubscriptionUnitPrice-wrapper"><a href="{{product.url | append: '?view=selected_subscription'}}">Price per gram on subscription <span class="ProductItem__SubscriptionUnitPrice">{{product_pack_subscription_unit_price | money_without_trailing_zeros}}</span></a></div>
+          {% endif %}
+          {% comment %} End Showing Subscription Unit Price {% endcomment %}
 
           {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
             <div class="ProductItem__UnitPriceMeasurement">
