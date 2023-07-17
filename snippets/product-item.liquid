@@ -1,4 +1,13 @@
-<div class="ProductItem {% if use_horizontal %}ProductItem--horizontal{% endif %}">
+{% if product.metafields.custom.pack_weight.value != blank %}
+  {% assign product_pack_weight = product.metafields.custom.pack_weight.value %}
+  {% assign product_pack_unit_price = product.price | divided_by: product_pack_weight %}
+  {% if product.compare_at_price > product.price %}
+    {% assign product_pack_unit_compare_at_price = product.compare_at_price | divided_by: product_pack_weight %}
+  {% endif %}
+{% else %}
+  {% assign product_pack_weight = false %}
+{% endif %}
+<div class="ProductItem {% if use_horizontal %}ProductItem--horizontal{% endif %}" data-item-type="product" data-pack-weight="{{product.metafields.custom.pack_weight.value}}" data-pack-unit-price = "{{ product_pack_unit_price}}">
   <div class="ProductItem__Wrapper">
     {%- comment -%}
     We are using LazySizes to efficiently choose the most appropriate image in the set. However, because internally LazySizes uses srcset, we need to make
@@ -161,12 +170,25 @@
             {%- if product.compare_at_price > product.price -%}
               <span class="ProductItem__Price Price Price--highlight Text--subdued">{{ product.price | money_without_trailing_zeros }}</span>
               <span class="ProductItem__Price Price Price--compareAt Text--subdued">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+              {% if product_pack_unit_price > 0 %}
+                <div class="ProductItem__PackUnitPrice--Wrapper">
+                  <span class="ProductItem__PackUnitPrice">
+                    Price per gram {{product_pack_unit_price | money_without_trailing_zeros}}                     
+                    {% if product_pack_unit_compare_at_price %}
+                      <span class="PackUnitComparePrice Text--subdued">{{product_pack_unit_compare_at_price | money_without_trailing_zeros}}</span>
+                    {% endif %}
+                  </span>
+                </div>
+              {% endif %}
             {%- elsif product.price_varies -%}
               {%- capture formatted_min_price -%}{{ product.price_min | money_without_trailing_zeros }}{%- endcapture -%}
               {%- capture formatted_max_price -%}{{ product.price_max | money_without_trailing_zeros }}{%- endcapture -%}
               <span class="ProductItem__Price Price Text--subdued">{{ 'collection.product.from_price_html' | t: min_price: formatted_min_price, max_price: formatted_max_price }}</span>
             {%- else -%}
               <span class="ProductItem__Price Price Text--subdued">{{ product.price | money_without_trailing_zeros }}</span>
+              {% if product_pack_unit_price > 0 %}
+                <div class="ProductItem__PackUnitPrice--Wrapper"><span class="ProductItem__PackUnitPrice">Price per gram {{product_pack_unit_price | money_without_trailing_zeros}}</span></div>
+              {% endif %}
             {%- endif -%}
           </div>
 

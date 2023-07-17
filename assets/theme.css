@@ -11118,3 +11118,16 @@ shopify-payment-terms {
     }
 
 }
+
+/* Custom styles by Paul from Miracle Commerce */
+/* Styles for showing product unit price */
+.ProductItem__PackUnitPrice--wrapper{
+  text-transform: initial;
+}
+
+.ProductItem__PackUnitPrice{
+  background-color: #000; 
+  color: #fff; 
+  display: inline-block; 
+  padding: 5px 20px; 
+}
