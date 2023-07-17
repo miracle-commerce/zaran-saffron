@@ -42,7 +42,18 @@
       {%- else -%}
         <span class="ProductMeta__Price Price Text--subdued u-h4">{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</span>
       {%- endif -%}
+
+      {% comment %} Get Product Unit Price {% endcomment %}
+      {% if product.metafields.custom.pack_weight.value != blank %}
+        {% assign product_pack_weight = product.metafields.custom.pack_weight.value %}
+        {% assign product_pack_unit_price = product.selected_or_first_available_variant.price | divided_by: product_pack_weight %}
+        <span class="ProductMeta__Price Price Price--pack-unit-price u-h4">(Price per gram {{product_pack_unit_price | money_without_trailing_zeros}})</span>
+      {% endif %}
+      {% comment %} End Product Unit Price {% endcomment %}
+      
     </div>
+
+    
 
     <div class="ProductMeta__UnitPriceMeasurement" style="display: {%- if product.selected_or_first_available_variant.unit_price_measurement -%}block{% else %}none{% endif %}">
       <div class="UnitPriceMeasurement Heading u-h6 Text--subdued">

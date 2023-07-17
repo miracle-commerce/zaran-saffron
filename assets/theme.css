@@ -11143,3 +11143,9 @@ shopify-payment-terms {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
 }
+
+.ProductMeta__Price.Price--pack-unit-price{
+  color: #ffd200; 
+  text-transform: initial; 
+  letter-spacing: initial; 
+}
