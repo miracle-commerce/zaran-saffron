@@ -11149,3 +11149,12 @@ shopify-payment-terms {
   text-transform: initial; 
   letter-spacing: initial; 
 }
+
+@media only screen and (min-width: 641px){
+  .FeaturedProduct{
+    max-width: 1080px;
+  }
+  .FeaturedProduct__Gallery{
+    max-width: 600px;
+  }
+}
