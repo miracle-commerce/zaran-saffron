@@ -5,11 +5,6 @@
   {% if product.compare_at_price > product.price %}
     {% assign product_pack_unit_compare_at_price = product.compare_at_price | divided_by: product_pack_weight %}
   {% endif %}
-
-  {% comment %} Get Subscription Unit Price {% endcomment %}
-  {% if product.metafields.subscriptions.has_subscription.value == "True" and product.metafields.subscriptions.discount_percentage.value != 0 %}
-    {% assign product_pack_subscription_unit_price = 100 | minus: product.metafields.subscriptions.discount_percentage.value | times: product_pack_unit_price | divided_by: 100 %}
-  {% endif %}
 {% else %}
   {% assign product_pack_weight = false %}
 {% endif %}
@@ -199,10 +194,10 @@
               {% endif %}
             {%- endif -%}
           </div>
-          {% comment %} Showing Subscription Unit Price {% endcomment %}
-          
-          {% if product_pack_subscription_unit_price > 0 %}
-            <div class="ProductItem__SubscriptionUnitPrice-wrapper"><a href="{{product.url | append: '?view=selected_subscription'}}">Subscribe & Save <span class="ProductItem__SubscriptionUnitPrice">{{product_pack_subscription_unit_price | money_without_trailing_zeros}}</span></a></div>
+          {% comment %} Showing Subscription Price {% endcomment %}
+          {% if product.metafields.subscriptions.has_subscription.value == "True" and product.metafields.subscriptions.discount_percentage.value != 0 %}
+            {% assign product_subscribe_price = 100 | minus: product.metafields.subscriptions.discount_percentage.value | times: product.price | divided_by: 100 %}
+            <div class="ProductItem__SubscriptionUnitPrice-wrapper"><a href="{{product.url | append: '?view=selected_subscription'}}">Subscribe & Save <span class="ProductItem__SubscriptionUnitPrice">{{product_subscribe_price | money_without_trailing_zeros}}</span></a></div>
           {% endif %}
           {% comment %} End Showing Subscription Unit Price {% endcomment %}
 
