@@ -181,7 +181,7 @@
               {% if product_pack_unit_price > 0 %}
                 <div class="ProductItem__PackUnitPrice--Wrapper">
                   <span class="ProductItem__PackUnitPrice">
-                    Price per gram {{product_pack_unit_price | money_without_trailing_zeros}}                     
+                    <span class="unit-price__label">Price per gram</span> <span class="unit-price__amount">{{product_pack_unit_price | money_without_trailing_zeros}}</span>                     
                     {% if product_pack_unit_compare_at_price %}
                       <span class="PackUnitComparePrice Text--subdued">{{product_pack_unit_compare_at_price | money_without_trailing_zeros}}</span>
                     {% endif %}
@@ -195,14 +195,14 @@
             {%- else -%}
               <span class="ProductItem__Price Price Text--subdued">{{ product.price | money_without_trailing_zeros }}</span>
               {% if product_pack_unit_price > 0 %}
-                <div class="ProductItem__PackUnitPrice--Wrapper"><span class="ProductItem__PackUnitPrice">Price per gram {{product_pack_unit_price | money_without_trailing_zeros}}</span></div>
+                <div class="ProductItem__PackUnitPrice--Wrapper"><span class="ProductItem__PackUnitPrice"><span class="unit-price__label">Price per gram</span> <span class="unit-price__amount">{{product_pack_unit_price | money_without_trailing_zeros}}</span></span></div>
               {% endif %}
             {%- endif -%}
           </div>
           {% comment %} Showing Subscription Unit Price {% endcomment %}
           
           {% if product_pack_subscription_unit_price > 0 %}
-            <div class="ProductItem__SubscriptionUnitPrice-wrapper"><a href="{{product.url | append: '?view=selected_subscription'}}">Price per gram on subscription <span class="ProductItem__SubscriptionUnitPrice">{{product_pack_subscription_unit_price | money_without_trailing_zeros}}</span></a></div>
+            <div class="ProductItem__SubscriptionUnitPrice-wrapper"><a href="{{product.url | append: '?view=selected_subscription'}}">Subscribe & Save <span class="ProductItem__SubscriptionUnitPrice">{{product_pack_subscription_unit_price | money_without_trailing_zeros}}</span></a></div>
           {% endif %}
           {% comment %} End Showing Subscription Unit Price {% endcomment %}
 
