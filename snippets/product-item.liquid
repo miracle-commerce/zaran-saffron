@@ -171,7 +171,7 @@
         {%- if product.template_suffix != 'coming-soon' -%}
           <div class="ProductItem__PriceList {% if show_price_on_hover %}ProductItem__PriceList--showOnHover{% endif %} Heading">
             {%- if product.compare_at_price > product.price -%}
-              <span class="ProductItem__Price Price Price--highlight Text--subdued">{{ product.price | money_without_trailing_zeros }}</span>
+              <span class="ProductItem__Price Price Price--highlight Text--subdued u-h4">{{ product.price | money_without_trailing_zeros }}</span>
               <span class="ProductItem__Price Price Price--compareAt Text--subdued">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
               {% if product_pack_unit_price > 0 %}
                 <div class="ProductItem__PackUnitPrice--Wrapper">
@@ -188,7 +188,7 @@
               {%- capture formatted_max_price -%}{{ product.price_max | money_without_trailing_zeros }}{%- endcapture -%}
               <span class="ProductItem__Price Price Text--subdued">{{ 'collection.product.from_price_html' | t: min_price: formatted_min_price, max_price: formatted_max_price }}</span>
             {%- else -%}
-              <span class="ProductItem__Price Price Text--subdued">{{ product.price | money_without_trailing_zeros }}</span>
+              <span class="ProductItem__Price Price Text--subdued u-h4">{{ product.price | money_without_trailing_zeros }}</span>
               {% if product_pack_unit_price > 0 %}
                 <div class="ProductItem__PackUnitPrice--Wrapper"><span class="ProductItem__PackUnitPrice"><span class="unit-price__label">Price per gram</span> <span class="unit-price__amount">{{product_pack_unit_price | money_without_trailing_zeros}}</span></span></div>
               {% endif %}
