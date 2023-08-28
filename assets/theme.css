@@ -11211,3 +11211,28 @@ shopify-payment-terms {
     min-height: 750px;
   }
 }
+
+/* =================================
+Custom styles for new product template
+====================================*/
+[data-section-id="product-template-new"] .Product__Wrapper{
+  display: flex; 
+  flex-wrap: wrap; 
+  column-gap: 60px;
+  max-width: 1140px;
+  padding-top: 100px;
+  padding-left: 90px; 
+  padding-right: 90px;
+  margin: auto;
+}
+
+[data-section-id="product-template-new"] .Product__InfoWrapper, [data-section-id="product-template-new"] .Product__Gallery {
+  flex: 1 1 calc(50% - 30px); 
+  max-width: calc(50% - 30px);
+  margin-left: 0; 
+  margin-right: 0; 
+}
+
+[data-section-id="product-template-new"] .Product__InfoWrapper{
+  position: static; 
+}
