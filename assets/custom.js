@@ -22,3 +22,10 @@
  *   bubbles: true
  * }));
  */
+
+// Script for weight pack selector
+const ProductWeightPackSelector = document.querySelector("#product__weightPackSelector");
+
+ProductWeightPackSelector.addEventListener('click', (e)=>{
+    ProductWeightPackSelector.classList.toggle("active");
+})

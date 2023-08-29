@@ -15,7 +15,7 @@
 }
 {%- endcapture -%}
 
-<section class="Product Product--{{ section.settings.image_size }}" data-section-id="{{ section.id }}" data-section-type="product" data-section-settings='{{ section_settings }}'>
+<section class="Product Product--{{ section.settings.image_size }} new-product-template" data-section-id="{{ section.id }}" data-section-type="product" data-section-settings='{{ section_settings }}'>
   <div class="Product__Wrapper">
     {%- capture action_list_items -%}
       {%- if section.settings.enable_image_zoom -%}
@@ -156,6 +156,24 @@
       <div class="Product__Info {% if media_count == 0 %}Product__Info--noGallery{% endif %}">
         <div class="Container">
           {%- render 'product-meta', product: product, show_description: true -%}
+
+          {% if product.metafields.custom.weight_pack_data.value %}
+            <div class="product__pack-weight-selector__wrapper">
+              <label class="product__weightPackSelector--label">Weight Pack</label>
+              <ul name="" id="product__weightPackSelector" class="product__weightPackSelector">
+                {%- assign current_pack_weight = product.metafields.custom.pack_weight.value -%}
+                <li class="Product__WeightPackProductList current-weight">{{current_pack_weight | append: ' g'}}</li>
+
+                <ul class="Product__WeightPackProductsDropdown">
+                  {% for weight_pack in product.metafields.custom.weight_pack_data.value %}
+                      {%- assign pack_product = all_products[weight_pack.product] -%}
+                      {%- assign pack_weight = weight_pack.weight -%}
+                     <li class="Product__WeightPackProductList drowpdown--item {% if product == pack_product %} current-active{% endif %}"><a href="{% unless product == pack_product %}{{pack_product.url | append: '?view=new'}}{% else %}javascript:void(0){% endunless %}" title="{{pack_product.title}}">{{pack_weight.value | append: pack_weight.unit}}</a></li>
+                  {% endfor %}
+                </ul>
+              </ul> 
+            </div>
+          {% endif %}
 
           {%- if product.template_suffix != 'coming-soon' -%}
             {%- render 'product-form', product: product -%}
@@ -417,6 +435,41 @@ This is the root container for the zoom functionality. Must not be removed, as o
   </div>
 {%- endif -%}
 {% render 'reviewsio-polaris' %}
+
+
+<script>
+  window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)};
+  ShopifyXR('addModels', {{ product.media | where: 'media_type', 'model' | json }});
+</script>
+<script type="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+
 {% schema %}
 {
   "name": "Product page",
