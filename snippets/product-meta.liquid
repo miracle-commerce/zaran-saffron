@@ -80,35 +80,49 @@
   {%- endif -%}
 
   {%- if show_description and section.settings.description_below_add_to_cart == false -%}
-    <div class="ProductMeta__Description">
+    <div class="ProductMeta__Description ProductMeta__Description--new" data-product-metadescription-new>
+
+      {%- if product.metafields.custom.short_description.value -%}
+        {%- assign PrShortDescription = product.metafields.custom.short_description | metafield_text | strip | truncatewords: 30, '...' -%}
+        {%- assign PrDescriptionSize = product.metafields.custom.short_description | metafield_text | strip | split: ' ' | size -%}
+        {%- assign PrFullDescription = product.metafields.custom.short_description | metafield_tag -%}
+      {%- else -%}
+        {%- assign PrShortDescription = product.description | strip_html | strip | truncatewords: 30, '...' -%} 
+        {%- assign PrDescriptionSize = product.description | strip_html | strip | split: ' ' | size -%}
+        {%- assign PrFullDescription = product.description | replace: 'data-section-type', 'data-section-type-placeholder'  -%}
+      {%- endif -%}
       <div class="Rte">
         {%- comment -%}
         We have figured out that some merchants were copy-pasting huge chunk of code into the product description,
         which can make the theme crashes if it contains some special attributes used by the theme. We therefore make sure to process this
         {%- endcomment -%}
-        {%- if product.metafields.custom.short_description.value -%}
-          {{product.metafields.custom.short_description | metafield_tag}}
+        {%- if PrDescriptionSize > 30 -%}
+          <div class="ProductMeta__ShortDescription">{{PrShortDescription}}</div>
+          <div class="ProductMeta__FullDescription">{{PrFullDescription}}</div>
         {%- else -%}
-          {{ product.description | replace: 'data-section-type', 'data-section-type-placeholder' }}
+          {{PrFullDescription}}
         {%- endif -%}
       </div>
-
-      {%- if section.settings.show_share_buttons -%}
-        <div class="ProductMeta__ShareButtons hidden-pocket">
-          <span class="ProductMeta__ShareTitle Heading Text--subdued u-h7">{{ 'product.form.share' | t }}</span>
-
-          {%- assign share_url = shop.url | append: product.url -%}
-          {%- assign twitter_text = product.title -%}
-          {%- assign pinterest_description = product.description | strip_html | truncatewords: 15 | url_param_escape -%}
-          {%- assign pinterest_image = product.featured_image | img_url: 'large' | prepend: 'https:' -%}
-
-          <div class="ProductMeta__ShareList Text--subdued">
-            <a class="ProductMeta__ShareItem" href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="Facebook">{%- render 'icon' with 'facebook' -%}</a>
-            <a class="ProductMeta__ShareItem" href="https://twitter.com/share?{% if twitter_text != blank %}text={{twitter_text}}&{% endif %}url={{ share_url }}" target="_blank" rel="noopener" aria-label="Twitter">{%- render 'icon' with 'twitter' -%}</a>
-            <a class="ProductMeta__ShareItem" href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}" target="_blank" rel="noopener" aria-label="Pinterest">{%- render 'icon' with 'pinterest' -%}</a>
-          </div>
-        </div>
+      {%- if PrDescriptionSize > 30 -%}
+        <span class="ProductMeta__Description__ShowMore" data-show-more-pr-description>Show More</span>
       {%- endif -%}
     </div>
+    
+    {%- if section.settings.show_share_buttons -%}
+      <div class="ProductMeta__ShareButtons ProductMeta__ShareButtons--new hidden-pocket">
+        <span class="ProductMeta__ShareTitle Heading Text--subdued u-h7">{{ 'product.form.share' | t }}</span>
+
+        {%- assign share_url = shop.url | append: product.url -%}
+        {%- assign twitter_text = product.title -%}
+        {%- assign pinterest_description = product.description | strip_html | truncatewords: 15 | url_param_escape -%}
+        {%- assign pinterest_image = product.featured_image | img_url: 'large' | prepend: 'https:' -%}
+
+        <div class="ProductMeta__ShareList Text--subdued">
+          <a class="ProductMeta__ShareItem" href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="Facebook">{%- render 'icon' with 'facebook' -%}</a>
+          <a class="ProductMeta__ShareItem" href="https://twitter.com/share?{% if twitter_text != blank %}text={{twitter_text}}&{% endif %}url={{ share_url }}" target="_blank" rel="noopener" aria-label="Twitter">{%- render 'icon' with 'twitter' -%}</a>
+          <a class="ProductMeta__ShareItem" href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}" target="_blank" rel="noopener" aria-label="Pinterest">{%- render 'icon' with 'pinterest' -%}</a>
+        </div>
+      </div>
+    {%- endif -%}
   {%- endif -%}
 </div>

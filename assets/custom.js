@@ -70,7 +70,7 @@ Faqs.forEach((faq)=>{
     })
 })
 
-// Styles for ProductTabColumns 
+// Scripts for ProductTabColumns 
 const ProductTabColumnItems = document.querySelectorAll(".ProductTabColumnItem");
 ProductTabColumnItems.forEach((ProductTabColumnItem)=>{
     let columnTitle = ProductTabColumnItem.querySelector(".ProductTabColumnItem__Title");
@@ -78,3 +78,15 @@ ProductTabColumnItems.forEach((ProductTabColumnItem)=>{
         ProductTabColumnItem.classList.toggle("active");
     })
 })
+
+// Scripts for ProductMetaDescription's animation
+const ProductMetaDescriptionNew = document.querySelector("[data-product-metadescription-new]");
+
+if(ProductMetaDescriptionNew){
+    const ShowMorePrDescriptionEl = document.querySelector("[data-show-more-pr-description]");
+    if(ShowMorePrDescriptionEl){
+        ShowMorePrDescriptionEl.addEventListener("click", ()=>{
+            ProductMetaDescriptionNew.classList.toggle("full-show");
+        })
+    }
+}

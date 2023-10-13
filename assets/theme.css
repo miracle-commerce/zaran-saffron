@@ -11710,11 +11710,11 @@ Custom styles for new product template
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 1px;
-  padding: 20px;
+  padding: 12px 20px;
   transition: none;
   display: flex; 
   align-items: center; 
-  height: 60px;
+  height: 45px;
 }
 
 .new-product-template .ProductForm__AddToCart::before{
@@ -11787,4 +11787,28 @@ Custom styles for new product template
 
 .Product__SlideshowNavScroller .flickity-page-dots{
   display: none; 
+}
+
+.ProductMeta__Description--new{
+  position: relative;
+}
+
+.ProductMeta__Description--new .ProductMeta__FullDescription{
+  display: none; 
+  opacity: 0; 
+  visibility: hidden;
+}
+.ProductMeta__Description--new.full-show .ProductMeta__FullDescription{
+  display: block; 
+  opacity: 1; 
+  visibility: visible; 
+  transition: all 1s;
+}
+
+.ProductMeta__Description--new.full-show .ProductMeta__ShortDescription{
+  display: none;
+}
+
+.ProductMeta__Description__ShowMore{
+  cursor: pointer;
 }
