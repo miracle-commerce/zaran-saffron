@@ -3,8 +3,9 @@
     "product-template-new": {
       "type": "product-template-new",
       "settings": {
+        "money_back_guarantee": "30 DAY NO-RISK MONEY BACK GUARANTEE",
         "show_share_buttons": true,
-        "show_vendor": true,
+        "show_vendor": false,
         "show_sku": false,
         "show_taxes_included": false,
         "description_below_add_to_cart": false,
@@ -18,10 +19,10 @@
         "show_payment_button": true,
         "show_pickup_availability": false,
         "image_size": "medium",
-        "stack_images": false,
         "show_thumbnails": true,
         "enable_image_zoom": false,
         "enable_video_looping": false,
+        "show_tabs": true,
         "reviews_enabled": false,
         "featured_image_size": "large"
       }
@@ -30,7 +31,10 @@
       "type": "product-recommendations",
       "settings": {
         "show_product_recommendations": true,
-        "show_product_info": true
+        "heading": "You may also like",
+        "show_product_info": true,
+        "show_vendor": false,
+        "show_color_swatch": false
       }
     },
     "recently-viewed-products": {
@@ -38,7 +42,9 @@
       "settings": {
         "show_section": true,
         "title": "Recently viewed",
-        "show_product_info": true
+        "show_product_info": true,
+        "show_vendor": false,
+        "show_color_swatch": false
       }
     }
   },

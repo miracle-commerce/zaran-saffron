@@ -195,10 +195,11 @@ text: "Reviews"
 });
   }
 </script>
-  
+  {% comment %}
         <!-- Begin ReCharge code -->
 {% include 'subscription-theme-footer' %}
 <!-- End ReCharge code -->
+{% endcomment %}
 
         {% render 'quantity-breaks-now', customer: customer, template: template, product: product, cart: cart %}
         

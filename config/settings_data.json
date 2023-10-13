@@ -2,7 +2,7 @@
   "current": {
     "heading_color": "#1c1b1b",
     "text_color": "#1c1b1b",
-    "text_light_color": "#6a6a6a",
+    "text_light_color": "#4d4c4c",
     "link_color": "#6a6a6a",
     "background": "#ffffff",
     "light_background": "#ffffff",
@@ -27,6 +27,7 @@
     "text_font": "nunito_sans_n4",
     "base_text_font_size": 14,
     "show_page_transition": false,
+    "show_button_transition": true,
     "search_mode": "product,article",
     "product_show_price_on_hover": false,
     "product_show_secondary_image": false,
@@ -62,9 +63,9 @@
         "settings": {
           "enable_bar": true,
           "home_page_only": false,
-          "background": "#ffc300",
-          "text_color": "#000000",
-          "content": "30 DAY GUARANTEE & FREE DELIVERY",
+          "background": "#000000",
+          "text_color": "#ffffff",
+          "content": "FREE US SHIPPING OVER $40",
           "link": ""
         }
       },
@@ -79,7 +80,7 @@
           "show_locale_selector": true,
           "navigation_menu": "main-menu",
           "navigation_style": "center",
-          "show_icons": false,
+          "show_icons": true,
           "enable_transparent_header": false,
           "enable_transparent_header_collection": false,
           "show_transparent_header_border": false,
@@ -125,6 +126,67 @@
       "slideshow": {
         "type": "slideshow",
         "blocks": {
+          "slide-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Final.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/Final_2_mobile.jpg",
+              "apply_overlay": false,
+              "content_position": "bottomLeft",
+              "subheading": "",
+              "title": "",
+              "button_1_text": "",
+              "button_1_link": "",
+              "button_2_text": "",
+              "button_2_link": ""
+            }
+          },
+          "e1e1c7f0-9193-4378-b80f-b4439c3c1ff3": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Saffron_Rice4_Ready_copy_4.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/Zaran_Saffron.png",
+              "apply_overlay": false,
+              "content_position": "bottomRight",
+              "subheading": "",
+              "title": "",
+              "button_1_text": "",
+              "button_1_link": "",
+              "button_2_text": "",
+              "button_2_link": ""
+            }
+          },
+          "b97139fa-9f14-4295-866c-5190812165c7": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/TM3_copy_1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/Jalebi01_106657e1-1133-4227-9e1b-046211347025.jpg",
+              "apply_overlay": false,
+              "content_position": "bottomRight",
+              "subheading": "",
+              "title": "",
+              "button_1_text": "",
+              "button_1_link": "",
+              "button_2_text": "",
+              "button_2_link": ""
+            }
+          },
+          "7c0d69fc-cef1-467c-a08f-51802f8ef64b": {
+            "type": "image",
+            "disabled": true,
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Saffron_Rice4_Ready_copy_4.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/Saffron_Rice3_copy.jpg",
+              "apply_overlay": true,
+              "content_position": "bottomRight",
+              "subheading": "",
+              "title": "",
+              "button_1_text": "Shop Now",
+              "button_1_link": "shopify:\/\/products\/1-ounce-28-4-gr",
+              "button_2_text": "",
+              "button_2_link": ""
+            }
+          },
           "dbeff55b-3ae3-460c-ac76-b583042ba2cb": {
             "type": "image",
             "disabled": true,
@@ -140,86 +202,23 @@
               "button_2_text": "",
               "button_2_link": ""
             }
-          },
-          "e1e1c7f0-9193-4378-b80f-b4439c3c1ff3": {
-            "type": "image",
-            "disabled": true,
-            "settings": {
-              "image": "shopify:\/\/shop_images\/saffron_pancakes.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/Fudge4_copy_2_38a8bec2-2e7a-4bb5-a61a-36a498ad3de6.jpg",
-              "apply_overlay": false,
-              "content_position": "bottomLeft",
-              "subheading": "",
-              "title": "",
-              "button_1_text": "",
-              "button_1_link": "",
-              "button_2_text": "",
-              "button_2_link": ""
-            }
-          },
-          "7c0d69fc-cef1-467c-a08f-51802f8ef64b": {
-            "type": "image",
-            "disabled": true,
-            "settings": {
-              "image": "shopify:\/\/shop_images\/Saffron_Rice4_Ready_copy_4.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/Saffron_Rice3_copy.jpg",
-              "apply_overlay": false,
-              "content_position": "bottomRight",
-              "subheading": "",
-              "title": "",
-              "button_1_text": "",
-              "button_1_link": "",
-              "button_2_text": "",
-              "button_2_link": ""
-            }
-          },
-          "b97139fa-9f14-4295-866c-5190812165c7": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/TM3_copy_1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/zaran_saffron_golden_milk.jpg",
-              "apply_overlay": false,
-              "content_position": "middleLeft",
-              "subheading": "",
-              "title": "",
-              "button_1_text": "",
-              "button_1_link": "",
-              "button_2_text": "",
-              "button_2_link": ""
-            }
-          },
-          "slide-0": {
-            "type": "image",
-            "disabled": true,
-            "settings": {
-              "image": "shopify:\/\/shop_images\/Final.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/Final_2_mobile.jpg",
-              "apply_overlay": false,
-              "content_position": "middleLeft",
-              "subheading": "",
-              "title": "",
-              "button_1_text": "",
-              "button_1_link": "",
-              "button_2_text": "",
-              "button_2_link": ""
-            }
           }
         },
         "block_order": [
-          "dbeff55b-3ae3-460c-ac76-b583042ba2cb",
+          "slide-0",
           "e1e1c7f0-9193-4378-b80f-b4439c3c1ff3",
-          "7c0d69fc-cef1-467c-a08f-51802f8ef64b",
           "b97139fa-9f14-4295-866c-5190812165c7",
-          "slide-0"
+          "7c0d69fc-cef1-467c-a08f-51802f8ef64b",
+          "dbeff55b-3ae3-460c-ac76-b583042ba2cb"
         ],
         "settings": {
           "show_fullscreen": true,
           "show_arrow": false,
           "autoplay": true,
           "cycle_speed": 4,
-          "text_color": "#ffffff",
+          "text_color": "#000000",
           "button_color": "#ffffff",
-          "button_background": "#a10d0c"
+          "button_background": "#000000"
         }
       },
       "featured-collections": {
@@ -888,55 +887,6 @@
           "grid_desktop_items_per_row": 2
         }
       },
-      "16288054909eff35fd": {
-        "type": "slideshow",
-        "blocks": {
-          "16288054909eff35fd-0": {
-            "type": "image",
-            "disabled": true,
-            "settings": {
-              "image": "shopify:\/\/shop_images\/highest_quality.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/Zaran_saffron_water.jpg",
-              "apply_overlay": false,
-              "content_position": "bottomLeft",
-              "subheading": "",
-              "title": "",
-              "button_1_text": "",
-              "button_1_link": "",
-              "button_2_text": "",
-              "button_2_link": ""
-            }
-          },
-          "16288054909eff35fd-1": {
-            "type": "image",
-            "disabled": true,
-            "settings": {
-              "image": "shopify:\/\/shop_images\/4.png",
-              "apply_overlay": false,
-              "content_position": "bottomLeft",
-              "subheading": "",
-              "title": "",
-              "button_1_text": "",
-              "button_1_link": "",
-              "button_2_text": "",
-              "button_2_link": ""
-            }
-          }
-        },
-        "block_order": [
-          "16288054909eff35fd-0",
-          "16288054909eff35fd-1"
-        ],
-        "settings": {
-          "show_fullscreen": false,
-          "show_arrow": false,
-          "autoplay": true,
-          "cycle_speed": 3,
-          "text_color": "#ffffff",
-          "button_color": "#363636",
-          "button_background": "#ffffff"
-        }
-      },
       "16328605867f4578b0": {
         "type": "text-with-image",
         "disabled": true,
@@ -1151,7 +1101,6 @@
       "4e9d741c-2d1a-4858-8f61-41dcae942bd5",
       "16268069141e6d8afb",
       "collection-list",
-      "16288054909eff35fd",
       "d3b6bcec-fced-4f0f-8af7-dbca95fff303",
       "1625097680ac835726",
       "ca99c790-1318-4ccd-b32a-6cc556f9d348"
