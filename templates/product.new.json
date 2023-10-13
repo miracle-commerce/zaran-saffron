@@ -22,8 +22,6 @@
         "show_thumbnails": true,
         "enable_image_zoom": false,
         "enable_video_looping": false,
-        "tab_page_1_handle": "",
-        "tab_page_2_handle": "",
         "reviews_enabled": false,
         "featured_image_size": "large"
       }

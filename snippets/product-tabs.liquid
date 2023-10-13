@@ -1,172 +1,105 @@
-{%- assign first_page = pages[section.settings.tab_page_1_handle] -%}
-{%- assign second_page = pages[section.settings.tab_page_2_handle] -%}
-{%- assign first_custom_page = '' -%}
-{%- assign second_custom_page = '' -%}
-{%- assign third_custom_page = '' -%}
+{%- if section.settings.show_tabs -%}
+  <div class="ProductTabs" data-product-tabs>
+    <ul class="ProductTabs__heading">
+      {%- if product.metafields.custom.benefits.value -%}
+        <li class="ProductTab__title active" data-product-tab-title data-tab-target="benefits">Benefits</li>
+      {%- endif -%}
+      {%- if product.description -%}
+        <li class="ProductTab__title" data-product-tab-title data-tab-target="product-details">Product Details</li>
+      {%- endif -%}
+      {%- if product.metafields.custom.lab_analysis.value -%}
+        <li class="ProductTab__title" data-product-tab-title data-tab-target="lab-analysis" data-product-tab-title>Lab Analysis</li>
+      {%- endif -%}
+      
+      {%- if product.metafields.custom.faqs.value -%}
+        <li class="ProductTab__title" data-product-tab-title data-tab-target="faqs">FAQs</li>  
+      {%- endif -%}
+      {%- if product.metafields.custom.how_it_works.value -%}
+        <li class="ProductTab__title" data-product-tab-title data-tab-target="how-it-works">How it works</li>
+      {%- endif -%}
+    </ul>
+    <div class="ProductTabs__content">
+      {%- if product.description -%}
+        <div class="ProductTab__content product-description" data-tab-content data-tab-for="product-details">
+          {{product.description}}
+        </div>
+      {%- endif -%}
 
-{%- comment -%}
-  We allow to add two tabs that are extracted using the tag system. To add such a tag, simply create a page and
-  note the handle somewhere.
-  Next, add a tag to your product in this form: __tab1:page-handle or __tab2:page-handle
-  The theme will automatically link the tab to the page
-{%- endcomment -%}
+      {%- if product.metafields.custom.lab_analysis.value -%}
+        <div class="ProductTab__content page-content" data-tab-content data-tab-for="lab-analysis">
+          {{product.metafields.custom.lab_analysis.value.content}}
+        </div>
+      {%- endif -%}
 
-{%- assign has_unique_tab_1 = false -%}
-{%- assign has_unique_tab_2 = false -%}
-
-{%- comment -%}First, check the metafields{%- endcomment -%}
-
-{%- if product.metafields.sf_product_tabs.tab_1_title != blank and product.metafields.sf_product_tabs.tab_1_content != blank -%}
-  {%- assign unique_tab_1_title = product.metafields.sf_product_tabs.tab_1_title -%}
-  {%- assign unique_tab_1_content = product.metafields.sf_product_tabs.tab_1_content -%}
-  {%- assign has_unique_tab_1 = true -%}
-{%- endif -%}
-
-{%- if product.metafields.sf_product_tabs.tab_2_title != blank and product.metafields.sf_product_tabs.tab_2_content != blank -%}
-  {%- assign unique_tab_2_title = product.metafields.sf_product_tabs.tab_2_title -%}
-  {%- assign unique_tab_2_content = product.metafields.sf_product_tabs.tab_2_content -%}
-  {%- assign has_unique_tab_2 = true -%}
-{%- endif -%}
-
-{%- if product.metafields.sf_product_tabs.tab_3_title != blank and product.metafields.sf_product_tabs.tab_3_content != blank -%}
-  {%- assign unique_tab_3_title = product.metafields.sf_product_tabs.tab_3_title -%}
-  {%- assign unique_tab_3_content = product.metafields.sf_product_tabs.tab_3_content -%}
-  {%- assign has_unique_tab_3 = true -%}
-{%- endif -%}
-
-{%- comment -%}Then, let's try the tags{%- endcomment -%}
-
-{%- for tag in product.tags -%}
-  {%- if tag contains '__tab1' -%}
-    {%- assign first_custom_page = tag | split: ':' | last -%}
-    {%- assign first_custom_page = pages[first_custom_page] -%}
-
-    {%- assign unique_tab_1_title = first_custom_page.title -%}
-    {%- assign unique_tab_1_content = first_custom_page.content -%}
-    {%- assign has_unique_tab_1 = true -%}
-  {%- endif -%}
-
-  {%- if tag contains '__tab2' -%}
-    {%- assign second_custom_page = tag | split: ':' | last -%}
-    {%- assign second_custom_page = pages[second_custom_page] -%}
-
-    {%- assign unique_tab_2_title = second_custom_page.title -%}
-    {%- assign unique_tab_2_content = second_custom_page.content -%}
-    {%- assign has_unique_tab_2 = true -%}
-  {%- endif -%}
-
-  {%- if tag contains '__tab3' -%}
-    {%- assign third_custom_page = tag | split: ':' | last -%}
-    {%- assign third_custom_page = pages[third_custom_page] -%}
-
-    {%- assign unique_tab_3_title = third_custom_page.title -%}
-    {%- assign unique_tab_3_content = third_custom_page.content -%}
-    {%- assign has_unique_tab_3 = true -%}
-  {%- endif -%}
-{%- endfor -%}
-
-{%- if first_page.handle != blank or second_page.handle != blank or has_unique_tab_1 or has_unique_tab_2 or has_unique_tab_3 or section.settings.reviews_enabled -%}
-  <div class="Product__Tabs">
-    {%- if has_unique_tab_1 -%}
-      <div class="Collapsible Collapsible--large">
-        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
-          {{- unique_tab_1_title -}} <span class="Collapsible__Plus"></span>
-        </button>
-
-        <div class="Collapsible__Inner">
-          <div class="Collapsible__Content">
-            <div class="Rte">
-              {{- unique_tab_1_content -}}
-            </div>
+      {%- if product.metafields.custom.benefits.value -%}
+        <div class="ProductTab__content tab-style--multicolumn active" data-tab-content data-tab-for="benefits">
+          <div class="product-benefits ProductTabColumnItems">
+            {% for benefit in product.metafields.custom.benefits.value %}
+              <div class="product-benefit ProductTabColumnItem">
+                {%- if benefit.icon -%}
+                  <img src="{{benefit.icon | image_url: width: 40}}" alt="" class="product-benefit__icon ProductTabColumnItem__Image desktop-show">
+                {%- endif -%}
+                <h4 class="product-benefit__title ProductTabColumnItem__Title">
+                  {%- if benefit.icon -%}
+                    <img src="{{benefit.icon | image_url: width: 40}}" alt="" class="product-benefit__icon ProductTabColumnItem__Image mobile-show">
+                  {%- endif -%}
+                  <span class="Title">
+                    {{benefit.title}}
+                  </span>
+                  <span class="ProductTabColumnItem__Title__icon">
+                    {% render 'icon' with 'plus' %}
+                    {% render 'icon' with 'minus' %}
+                  </span>
+                </h4>
+                <div class="product-benefit__content ProductTabColumnItem__Content">{{benefit.content}}</div>
+              </div>
+            {% endfor %}
           </div>
         </div>
-      </div>
-    {%- endif -%}
+      {%- endif -%}
 
-    {%- if has_unique_tab_2 -%}
-      <div class="Collapsible Collapsible--large">
-        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
-          {{- unique_tab_2_title -}} <span class="Collapsible__Plus"></span>
-        </button>
-
-        <div class="Collapsible__Inner">
-          <div class="Collapsible__Content">
-            <div class="Rte">
-              {{- unique_tab_2_content -}}
-            </div>
+      {%- if product.metafields.custom.faqs.value -%}
+        <div class="ProductTab__content" data-tab-content data-tab-for="faqs">
+          <div class="faqs" data-faqs>
+            {% for faq in product.metafields.custom.faqs.value %}
+              <div class="faq-item" data-faq-item>
+                <h3 class="faq-title" data-faq-title>{{faq.title}}<span class="faq-title-icon icon-plus">{% render 'icon' with 'plus' %}</span>
+                <span class="faq-title-icon icon-minus">{% render 'icon' with 'minus' %}</span></h3>
+                <div class="faq-content">
+                  {{faq.content | metafield_tag}}
+                </div>
+              </div>
+            {% endfor %}
           </div>
         </div>
-      </div>
-    {%- endif -%}
+      {%- endif -%}
 
-    {%- if has_unique_tab_3 -%}
-      <div class="Collapsible Collapsible--large">
-        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
-          {{- unique_tab_3_title -}} <span class="Collapsible__Plus"></span>
-        </button>
-
-        <div class="Collapsible__Inner">
-          <div class="Collapsible__Content">
-            <div class="Rte">
-              {{- unique_tab_3_content -}}
-            </div>
+      {%- if product.metafields.custom.how_it_works.value -%}
+        <div class="ProductTab__content" data-tab-content data-tab-for="how-it-works">
+          <div class="product-how-it-works ProductTabColumnItems">
+            {% for how_works_item in product.metafields.custom.how_it_works.value %}
+              <div class="product-how-it-works-item ProductTabColumnItem">
+                {% if how_works_item.icon %}
+                  <img src="{{how_works_item.icon | image_url: width: 40}}" alt="" class="product-how-it-works-item__icon ProductTabColumnItem__Image desktop-show"> 
+                {% endif %}
+                <h4 class="product-how-it-works-item__title ProductTabColumnItem__Title">
+                  {% if how_works_item.icon %}
+                    <img src="{{how_works_item.icon | image_url: width: 40}}" alt="" class="product-how-it-works-item__icon ProductTabColumnItem__Image mobile-show"> 
+                  {% endif %}
+                  <span class="Title">
+                    {{how_works_item.title}}
+                  </span>
+                  <span class="ProductTabColumnItem__Title__icon">
+                    {% render 'icon' with 'plus' %}
+                    {% render 'icon' with 'minus' %}
+                  </span>
+                </h4>
+                <div class="product-how-it-works-item__content ProductTabColumnItem__Content">{{how_works_item.content | metafield_tag}}</div>
+              </div>
+            {% endfor %}
           </div>
         </div>
-      </div>
-    {%- endif -%}
-
-    {%- if first_page != empty -%}
-      <div class="Collapsible Collapsible--large">
-        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
-          {{- first_page.title -}} <span class="Collapsible__Plus"></span>
-        </button>
-
-        <div class="Collapsible__Inner">
-          <div class="Collapsible__Content">
-            <div class="Rte">
-              {{- first_page.content -}}
-            </div>
-          </div>
-        </div>
-      </div>
-    {%- endif -%}
-
-    {%- if second_page != empty -%}
-      <div class="Collapsible Collapsible--large">
-        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
-          {{- second_page.title -}} <span class="Collapsible__Plus"></span>
-        </button>
-
-        <div class="Collapsible__Inner">
-          <div class="Collapsible__Content">
-            <div class="Rte">
-              {{- second_page.content -}}
-            </div>
-          </div>
-        </div>
-      </div>
-    {%- endif -%}
-
-    {%- if section.settings.reviews_enabled -%}
-      <div class="Collapsible Collapsible--large">
-        {%- comment -%}We parse from metafields the number of reviews. First we try to use the old way, and then the updated way{%- endcomment -%}
-        {%- if product.metafields.spr.reviews contains 'itemprop="reviewCount"' -%}
-          {%- assign reviews_count = product.metafields.spr.reviews | split: '<meta itemprop="reviewCount" content="' | last | split: '">' | first | times: 1 -%}
-        {%- else -%}
-          {%- assign reviews_count = product.metafields.spr.reviews | split: '"reviewCount": "' | last | split: '"' | first | plus: 0 -%}
-        {%- endif -%}
-
-        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
-          <span>{{ 'product.tabs.reviews' | t }} {% if product.metafields.spr.reviews %}<span class="text--light">({{ reviews_count | default: 0 }})</span>{% endif %}</span>
-          <span class="Collapsible__Plus"></span>
-        </button>
-
-        <div class="Collapsible__Inner">
-          <div class="Collapsible__Content">
-            <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-          </div>
-        </div>
-      </div>
-    {%- endif -%}
+      {%- endif -%}
+    </div>
   </div>
 {%- endif -%}

@@ -307,6 +307,11 @@ for size, we use it to display a size chart (if applicable)
 
   {{ form | payment_terms }}
 
+  {% comment %} MoneyBack Guarantee {% endcomment %}
+  {%- if section.settings.money_back_guarantee -%}
+    <div class="money_back_guarantee">{{section.settings.money_back_guarantee}}</div>
+  {%- endif -%}
+
   {%- comment -%}The availability container will be added automatically if there is store pickup available{%- endcomment -%}
   {%- if section.settings.show_pickup_availability -%}
     <div class="ProductMeta__StoreAvailabilityContainer"></div>

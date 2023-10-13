@@ -60,11 +60,11 @@
       "announcement": {
         "type": "announcement",
         "settings": {
-          "enable_bar": false,
+          "enable_bar": true,
           "home_page_only": false,
-          "background": "#000000",
-          "text_color": "#ffffff",
-          "content": "",
+          "background": "#ffc300",
+          "text_color": "#000000",
+          "content": "30 DAY GUARANTEE & FREE DELIVERY",
           "link": ""
         }
       },
@@ -127,6 +127,7 @@
         "blocks": {
           "dbeff55b-3ae3-460c-ac76-b583042ba2cb": {
             "type": "image",
+            "disabled": true,
             "settings": {
               "image": "shopify:\/\/shop_images\/Fudge4_copy_2_38a8bec2-2e7a-4bb5-a61a-36a498ad3de6.jpg",
               "mobile_image": "shopify:\/\/shop_images\/saffron_pancakes-mobile.jpg",
@@ -142,6 +143,7 @@
           },
           "e1e1c7f0-9193-4378-b80f-b4439c3c1ff3": {
             "type": "image",
+            "disabled": true,
             "settings": {
               "image": "shopify:\/\/shop_images\/saffron_pancakes.jpg",
               "mobile_image": "shopify:\/\/shop_images\/Fudge4_copy_2_38a8bec2-2e7a-4bb5-a61a-36a498ad3de6.jpg",
@@ -157,6 +159,7 @@
           },
           "7c0d69fc-cef1-467c-a08f-51802f8ef64b": {
             "type": "image",
+            "disabled": true,
             "settings": {
               "image": "shopify:\/\/shop_images\/Saffron_Rice4_Ready_copy_4.jpg",
               "mobile_image": "shopify:\/\/shop_images\/Saffron_Rice3_copy.jpg",

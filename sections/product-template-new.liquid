@@ -4,8 +4,8 @@
   "templateSuffix": {{ product.template_suffix | json }},
   "showInventoryQuantity": {{ section.settings.show_inventory_quantity | json }},
   "showSku": {{ section.settings.show_sku | json }},
-  "stackProductImages": {{ section.settings.stack_images | json }},
-  "showThumbnails": {{ section.settings.show_thumbnails | json }},
+  "stackProductImages": false,
+  "showThumbnails": true,
   "enableVideoLooping": {{ section.settings.enable_video_looping | json }},
   "inventoryQuantityThreshold": {{ section.settings.inventory_quantity_threshold }},
   "showPriceInButton": {{ section.settings.show_price_in_button | json }},
@@ -159,16 +159,38 @@
 
           {% if product.metafields.custom.weight_pack_data.value %}
             <div class="product__pack-weight-selector__wrapper">
-              <label class="product__weightPackSelector--label">Weight Pack</label>
+              <label class="product__weightPackSelector--label">Size:</label>
               <ul name="" id="product__weightPackSelector" class="product__weightPackSelector">
                 {%- assign current_pack_weight = product.metafields.custom.pack_weight.value -%}
-                <li class="Product__WeightPackProductList current-weight">{{current_pack_weight | append: ' g'}}</li>
+                {% assign product_pack_unit_price = product.selected_or_first_available_variant.price | divided_by: current_pack_weight %}
+                <li class="Product__WeightPackProductList current-weight">
+                  <span class="weight">
+                    {{current_pack_weight | append: ' gram'}}
+                  </span>
+                  <span class="ItemPrices">
+                    <span class="TotalPrice">{{product.selected_or_first_available_variant.price | money}}</span>
+                    <span class="unit-price">
+                      {{product_pack_unit_price | money_without_trailing_zeros | append: ' / gram'}}
+                    </span>
+                  </span>
+                </li>
 
                 <ul class="Product__WeightPackProductsDropdown">
                   {% for weight_pack in product.metafields.custom.weight_pack_data.value %}
                       {%- assign pack_product = all_products[weight_pack.product] -%}
                       {%- assign pack_weight = weight_pack.weight -%}
-                     <li class="Product__WeightPackProductList drowpdown--item {% if product == pack_product %} current-active{% endif %}"><a href="{% unless product == pack_product %}{{pack_product.url | append: '?view=new'}}{% else %}javascript:void(0){% endunless %}" title="{{pack_product.title}}">{{pack_weight.value | append: pack_weight.unit}}</a></li>
+                      {%- assign pack_product_unit_price = pack_product.price_min | divided_by: pack_weight.value.value -%}
+                      <li class="Product__WeightPackProductList drowpdown--item {% if product == pack_product %} current-active{% endif %}" {{pack_weight.value.value}}>
+                        <a href="{% unless product == pack_product %}{{pack_product.url | append: '?view=new'}}{% else %}javascript:void(0){% endunless %}" title="{{pack_product.title}}">
+                        <span class="weight">
+                          {{pack_weight.value | replace: 'g', 'gram'}}
+                        </span>
+                        <span class="ItemPrices">
+                          <span class="TotalPrice">{{pack_product.price_min | money}}</span>
+                          <span class="unit-price">{{pack_product_unit_price | money_without_trailing_zeros | append: ' / gram'}}</span>
+                        </span>
+                        </a>
+                      </li>
                   {% endfor %}
                 </ul>
               </ul> 
@@ -208,21 +230,12 @@
               {%- endif -%}
             </div>
           {%- endif -%}
-
-          {%- if section.settings.stack_images and product_aside != blank and media_count > 0 -%}
-            <div class="Product__QuickNav hidden-pocket">
-              <div class="Product__QuickNavWrapper">
-                <a href="#ProductAside" class="Heading Link Link--secondary u-h7">{{ 'product.form.view_info' | t }} {% render 'icon' with 'select-arrow-right' %}</a>
-                <a href="#ProductGallery" class="Heading Link Link--secondary u-h7">{{ 'product.form.view_images' | t }} {% render 'icon' with 'select-arrow-right' %}</a>
-              </div>
-            </div>
-          {%- endif -%}
         </div>
       </div>
     </div>
 
     {%- if product.media.size > 0 -%}
-      <div class="Product__Gallery {% if section.settings.stack_images %}Product__Gallery--stack{% endif %} {% if section.settings.show_thumbnails and media_count > 1 %}Product__Gallery--withThumbnails{% else %}Product__Gallery--withDots{% endif %}">
+      <div class="Product__Gallery {% if media_count > 1 %}Product__Gallery--withThumbnails{% else %}Product__Gallery--withDots{% endif %}">
         <span id="ProductGallery" class="Anchor"></span>
 
         {%- if action_list_items != blank -%}
@@ -233,62 +246,37 @@
 
         {%- capture slideshow_nav -%}
           {%- if media_count > 1 -%}
-            {%- if section.settings.show_thumbnails -%}
-              <div class="Product__SlideshowNav Product__SlideshowNav--thumbnails">
-                <div class="Product__SlideshowNavScroller">
-                  {%- for media in product.media -%}
-                    {%- if media.alt == 'featured' or media.alt == 'featured mobile' -%}
-                      {%- continue -%}
-                    {%- endif -%}
+            <div class="Product__SlideshowNav Product__SlideshowNav--thumbnails">
+              <div class="Product__SlideshowNavScroller"  data-flickity='{"prevNextButtons": true,"contain":"true", "pageDots": false}'>
+                {%- for media in product.media -%}
+                  {%- if media.alt == 'featured' or media.alt == 'featured mobile' -%}
+                    {%- continue -%}
+                  {%- endif -%}
 
-                    {%- capture nav_item_badge -%}
-                      {%- case media.media_type -%}
-                        {%- when 'model' -%}
-                          <span class="Product__SlideshowNavBadge">{% render 'icon', icon: 'media-model-badge' %}</span>
+                  {%- capture nav_item_badge -%}
+                    {%- case media.media_type -%}
+                      {%- when 'model' -%}
+                        <span class="Product__SlideshowNavBadge">{% render 'icon', icon: 'media-model-badge' %}</span>
 
-                        {%- when 'video' or 'external_video' -%}
-                          <span class="Product__SlideshowNavBadge">{% render 'icon', icon: 'media-video-badge' %}</span>
-                      {%- endcase -%}
-                    {%- endcapture -%}
-
-                    {%- if section.settings.stack_images -%}
-                      <a href="#Media{{ media.id }}" data-offset="-25" data-focus-on-click data-media-id="{{ media.id }}" class="Product__SlideshowNavImage AspectRatio {% if forloop.first %}is-selected{% endif %}" style="--aspect-ratio: {{ media.preview_image.aspect_ratio }}">
-                        <img src="{{ media | img_url: '160x' }}" alt="{{ media.alt | escape }}">
-                        {{- nav_item_badge -}}
-                      </a>
-                    {%- else -%}
-                      <a href="{{ media | img_url: '1024x' }}" data-media-id="{{ media.id }}" class="Product__SlideshowNavImage AspectRatio {% if forloop.first %}is-selected{% endif %}" style="--aspect-ratio: {{ media.preview_image.aspect_ratio }}">
-                        <img src="{{ media | img_url: '160x' }}" alt="{{ media.alt | escape }}">
-                        {{- nav_item_badge -}}
-                      </a>
-                    {%- endif -%}
-                  {%- endfor -%}
-                </div>
+                      {%- when 'video' or 'external_video' -%}
+                        <span class="Product__SlideshowNavBadge">{% render 'icon', icon: 'media-video-badge' %}</span>
+                    {%- endcase -%}
+                  {%- endcapture -%}
+                  
+                  <a href="{{ media | img_url: '1024x' }}" data-media-id="{{ media.id }}" class="Product__SlideshowNavImage AspectRatio {% if inital_media_id == media.id %}is-selected{% endif %}" style="--aspect-ratio: {{ media.preview_image.aspect_ratio }}">
+                    <img src="{{ media | img_url: '160x' }}" alt="{{ media.alt | escape }}">
+                    {{- nav_item_badge -}}
+                  </a>
+                {%- endfor -%}
               </div>
-            {%- endif -%}
-
-            {%- if section.settings.stack_images -%}
-              <div class="Product__SlideshowNav Product__SlideshowNav--dots">
-                <div class="Product__SlideshowNavScroller">
-                  {%- for media in product.media -%}
-                    {%- if media.alt == 'featured' or media.alt == 'featured mobile' -%}
-                      {%- continue -%}
-                    {%- endif -%}
-
-                    <a href="#Media{{ media.id }}" data-offset="-25" data-focus-on-click class="Product__SlideshowNavDot {% if forloop.first %}is-selected{% endif %}"></a>
-                  {%- endfor -%}
-                </div>
-              </div>
-            {%- endif -%}
+            </div>
           {%- endif -%}
         {%- endcapture -%}
 
-        {%- if section.settings.stack_images -%}
-          {{- slideshow_nav -}}
-        {%- endif -%}
-
         {%- capture flickity_options -%}
         {
+          "asNavFor":".Product__SlideshowNavScroller",
+          "contain": true,
           "prevNextButtons": false,
           "pageDots": false,
           "adaptiveHeight": true,
@@ -312,33 +300,7 @@
           </button>
         {%- endif -%}
 
-        {%- if media_count > 1 -%}
-          {%- comment -%}
-            IMPLEMENTATION NOTE: The reason we create ourselves our own UI instead of relying of the built-in feature of Flickity is that,
-            since the media API, Shopify requires to add arrows next to the dot. Unfortunately this layout is not
-            achievable easily using Flickity options only, so we have to run our own
-          {%- endcomment -%}
-
-          <div class="Product__SlideshowMobileNav {% if section.settings.stack_images or section.settings.show_thumbnails %}hidden-desk{% endif %}">
-            <button class="Product__SlideshowNavArrow Product__SlideshowNavArrow--previous" type="button" data-direction="previous" aria-label="{{ 'general.accessibility.previous' | t }}">
-              {% render 'icon' with 'media-arrow-left' %}
-            </button>
-
-            <div class="flickity-page-dots">
-              {%- for i in (1..media_count) -%}
-                <button type="button" aria-label="{{ 'product.slideshow.go_to_image' | t: i: i | escape }}" class="dot {% if forloop.index0 == initial_media_index %}is-selected{% endif %}" data-index="{{ forloop.index0 }}"></button>
-              {%- endfor -%}
-            </div>
-
-            <button class="Product__SlideshowNavArrow Product__SlideshowNavArrow--next" type="button" data-direction="next" aria-label="{{ 'general.accessibility.next' | t }}">
-              {% render 'icon' with 'media-arrow-right' %}
-            </button>
-          </div>
-        {%- endif -%}
-
-        {%- unless section.settings.stack_images -%}
-          {{- slideshow_nav -}}
-        {%- endunless -%}
+        {{- slideshow_nav -}}
       </div>
     {%- endif -%}
 
@@ -434,9 +396,10 @@ This is the root container for the zoom functionality. Must not be removed, as o
     </div>
   </div>
 {%- endif -%}
+
+
+
 {% render 'reviewsio-polaris' %}
-
-
 <script>
   window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)};
   ShopifyXR('addModels', {{ product.media | where: 'media_type', 'model' | json }});
@@ -475,6 +438,12 @@ This is the root container for the zoom functionality. Must not be removed, as o
   "name": "Product page",
   "class": "shopify-section--bordered",
   "settings": [
+    {
+      "type": "text",
+      "id": "money_back_guarantee",
+      "label": "Money Back Guarantee",
+      "default": "30 DAY NO RISK MONEY BACK GUARANTEE"
+    },
     {
       "type": "checkbox",
       "id": "show_share_buttons",
@@ -612,12 +581,6 @@ This is the root container for the zoom functionality. Must not be removed, as o
     },
     {
       "type": "checkbox",
-      "id": "stack_images",
-      "label": "Stack images on desktop",
-      "default": true
-    },
-    {
-      "type": "checkbox",
       "id": "show_thumbnails",
       "label": "Show thumbnails on desktop",
       "default": true
@@ -639,18 +602,10 @@ This is the root container for the zoom functionality. Must not be removed, as o
       "content": "Tabs"
     },
     {
-      "type": "page",
-      "id": "tab_page_1_handle",
-      "label": "First page"
-    },
-    {
-      "type": "page",
-      "id": "tab_page_2_handle",
-      "label": "Second page"
-    },
-    {
-      "type": "paragraph",
-      "content": "The theme also allows you to add specific tabs for a given product only. [Learn more about this feature](http://support.maestrooo.com/article/83-product-adding-different-tabs-per-product)."
+      "type": "checkbox",
+      "id": "show_tabs",
+      "label": "Show Tabs",
+      "default": true
     },
     {
       "type": "header",
