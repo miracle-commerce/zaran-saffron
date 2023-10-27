@@ -34,59 +34,65 @@ if(ProductWeightPackSelector){
 
 // Script for ProductTabs
 const ProductTabs = document.querySelector("[data-product-tabs]");
-const ProductTabTitles = ProductTabs.querySelectorAll("[data-product-tab-title]");
-ProductTabTitles.forEach((tabTitle)=>{
-    tabTitle.addEventListener('click', (e)=>{
-        if(!tabTitle.classList.contains('active')){
-            let oldActiveTabTitle = ProductTabs.querySelector(".active[data-product-tab-title]");
-            // Deactive old actived TabTitle
-            oldActiveTabTitle.classList.remove("active");
-            // Deactive old active tabcontent
-            let oldTarget = oldActiveTabTitle.dataset.tabTarget;
-            let oldTargetContentEl = ProductTabs.querySelector(`[data-tab-for='${oldTarget}']`);
-            if(oldTargetContentEl && oldTargetContentEl.classList.contains('active')){
-                oldTargetContentEl.classList.remove('active');
+if(ProductTabs){
+    const ProductTabTitles = ProductTabs.querySelectorAll("[data-product-tab-title]");
+    ProductTabTitles.forEach((tabTitle)=>{
+        tabTitle.addEventListener('click', (e)=>{
+            if(!tabTitle.classList.contains('active')){
+                let oldActiveTabTitle = ProductTabs.querySelector(".active[data-product-tab-title]");
+                // Deactive old actived TabTitle
+                oldActiveTabTitle.classList.remove("active");
+                // Deactive old active tabcontent
+                let oldTarget = oldActiveTabTitle.dataset.tabTarget;
+                let oldTargetContentEl = ProductTabs.querySelector(`[data-tab-for='${oldTarget}']`);
+                if(oldTargetContentEl && oldTargetContentEl.classList.contains('active')){
+                    oldTargetContentEl.classList.remove('active');
+                }
+                //active new tabtitle
+                tabTitle.classList.add("active");
+                // Active new TabContent
+                let newTarget = tabTitle.dataset.tabTarget;
+                let newTargetEl = ProductTabs.querySelector(`[data-tab-for='${newTarget}']`);
+                if(newTargetEl){
+                    newTargetEl.classList.add("active");
+                }
             }
-            //active new tabtitle
-            tabTitle.classList.add("active");
-            // Active new TabContent
-            let newTarget = tabTitle.dataset.tabTarget;
-            let newTargetEl = ProductTabs.querySelector(`[data-tab-for='${newTarget}']`);
-            if(newTargetEl){
-                newTargetEl.classList.add("active");
-            }
-        }
-    })
-})
-
-const Faqs = document.querySelectorAll("[data-faqs]");
-Faqs.forEach((faq)=>{
-    let faqItems = faq.querySelectorAll("[data-faq-item]");
-    faqItems.forEach((faqItem)=>{
-        let faqItemTitle = faqItem.querySelector("[data-faq-title]");
-        faqItemTitle.addEventListener('click', (e)=>{
-            faqItem.classList.toggle('active');
         })
     })
-})
+}
+
+const Faqs = document.querySelectorAll("[data-faqs]");
+if(Faqs){
+    Faqs.forEach((faq)=>{
+        let faqItems = faq.querySelectorAll("[data-faq-item]");
+        faqItems.forEach((faqItem)=>{
+            let faqItemTitle = faqItem.querySelector("[data-faq-title]");
+            faqItemTitle.addEventListener('click', (e)=>{
+                faqItem.classList.toggle('active');
+            })
+        })
+    })
+}
 
 // Scripts for ProductTabColumns 
 const ProductTabColumnItems = document.querySelectorAll(".ProductTabColumnItem");
-ProductTabColumnItems.forEach((ProductTabColumnItem)=>{
-    let columnTitle = ProductTabColumnItem.querySelector(".ProductTabColumnItem__Title");
-    columnTitle.addEventListener('click', (e)=>{
-        ProductTabColumnItem.classList.toggle("active");
+if(ProductTabColumnItems){
+    ProductTabColumnItems.forEach((ProductTabColumnItem)=>{
+        let columnTitle = ProductTabColumnItem.querySelector(".ProductTabColumnItem__Title");
+        columnTitle.addEventListener('click', (e)=>{
+            ProductTabColumnItem.classList.toggle("active");
+        })
     })
-})
+}
 
 // Scripts for ProductMetaDescription's animation
 const ProductMetaDescriptionNew = document.querySelector("[data-product-metadescription-new]");
 
 if(ProductMetaDescriptionNew){
-    const ShowMorePrDescriptionEl = document.querySelector("[data-show-more-pr-description]");
+    const ShowMorePrDescriptionEl = ProductMetaDescriptionNew.querySelector("[data-show-more-pr-description]");
     if(ShowMorePrDescriptionEl){
         ShowMorePrDescriptionEl.addEventListener("click", ()=>{
-            ProductMetaDescriptionNew.classList.toggle("full-show");
+            ProductMetaDescriptionNew.classList.toggle("full-show")? ShowMorePrDescriptionEl.innerText = 'Show Less':ShowMorePrDescriptionEl.innerText = 'Show More';
         })
     }
 }

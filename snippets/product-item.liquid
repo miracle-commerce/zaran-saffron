@@ -97,19 +97,23 @@
         {%- endif -%}
 
         <h2 class="ProductItem__Title Heading">
-          <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+          <a href="{{ product.url | within: collection }}">
+            {%- if product.title contains '(' -%}
+              {{product.title | split: '(' | first}}
+              <span class="ProductItem__Title__Weight">({{product.title | split: '(' | last | split: ')' | first}})</span>
+            {%- else -%}
+              {{ product.title }}
+            {%- endif -%}
+          </a>
         </h2>
-{% if product.title contains "Persian Saffron" or product.title contains "PERSIAN" %}
-    
- <div class="ruk_rating_snippet" data-sku="{{ product.handle }};{{ product.variants | map: 'sku' | join: ';' }};{{ product.variants | map: 'id' | join: ';' }};32846519369809;28gPersianTin;10gPersianTin;12390065209425;12390068289617;2gPersianTin;5gPersianTin;4gPersianTin;32846519337041;32846519304273;32846519271505;32846519238737"></div>
-
+        {% if product.title contains "Persian Saffron" or product.title contains "PERSIAN" %}
+          <div class="ruk_rating_snippet" data-sku="{{ product.handle }};{{ product.variants | map: 'sku' | join: ';' }};{{ product.variants | map: 'id' | join: ';' }};32846519369809;28gPersianTin;10gPersianTin;12390065209425;12390068289617;2gPersianTin;5gPersianTin;4gPersianTin;32846519337041;32846519304273;32846519271505;32846519238737"></div>
         {% elsif product.title contains "Spanish Saffron" or product.title contains "SPANISH" %}
-  
-  <div class="ruk_rating_snippet" data-sku="{{ product.handle }};{{ product.variants | map: 'sku' | join: ';' }};{{ product.variants | map: 'id' | join: ';' }};32846534508625;28gSpanishTin;10gSpanishTin;2gSpanishTin;5gSpanishTin;4gSpanishTin;32846534475857;32846534443089;32846534410321;32846534377553"></div>
-  
-		{% else %}
-        <div class="ruk_rating_snippet" data-sku="{{ product.handle }};{{ product.variants | map: 'sku' | join: ';' }};{{ product.variants | map: 'id' | join: ';' }}"></div>
+          <div class="ruk_rating_snippet" data-sku="{{ product.handle }};{{ product.variants | map: 'sku' | join: ';' }};{{ product.variants | map: 'id' | join: ';' }};32846534508625;28gSpanishTin;10gSpanishTin;2gSpanishTin;5gSpanishTin;4gSpanishTin;32846534475857;32846534443089;32846534410321;32846534377553"></div>
+		    {% else %}
+          <div class="ruk_rating_snippet" data-sku="{{ product.handle }};{{ product.variants | map: 'sku' | join: ';' }};{{ product.variants | map: 'id' | join: ';' }}"></div>
         {% endif %}
+
         {%- if show_color_swatch -%}
           {%- assign color_swatch_list = '' -%}
 
@@ -222,6 +226,13 @@
         {%- endif -%}
       </div>
     {%- endif -%}
+
+    {% comment %} ProductItem Add to cart button {% endcomment %}
+    {%- assign PrItemFormId = "productItem__Form__" | append: product.id -%}
+    {% form 'product', product, id: PrItemFormId %}
+      <input type="hidden" name="id" value="{{product.first_available_variant.id}}">
+      <button type="submit" class="ProductItem__CartButton">Add To Cart</button>
+    {% endform %}
   </div>
 
   {%- if use_horizontal -%}

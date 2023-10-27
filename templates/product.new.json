@@ -8,7 +8,7 @@
         "show_vendor": false,
         "show_sku": false,
         "show_taxes_included": false,
-        "description_below_add_to_cart": false,
+        "description_below_add_to_cart": true,
         "selector_mode": "dropdown",
         "show_color_swatch": false,
         "show_color_carousel": false,
