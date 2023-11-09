@@ -12,7 +12,7 @@
     "header_background": "#ffffff",
     "header_heading_color": "#1c1b1b",
     "header_light_color": "#6a6a6a",
-    "footer_background": "#1c1b1b",
+    "footer_background": "#000000",
     "footer_heading_color": "#ffffff",
     "footer_text_color": "#ffffff",
     "navigation_background": "#1c1b1b",
@@ -39,7 +39,9 @@
     "cart_enable_notes": true,
     "cart_show_free_shipping_threshold": false,
     "cart_free_shipping_threshold": "50",
+    "social_facebook": "https:\/\/www.facebook.com\/zaransaffron?mibextid=PzaGJu",
     "social_instagram": "https:\/\/www.instagram.com\/zaransaffron\/?hl=en",
+    "social_youtube": "https:\/\/youtube.com\/@zaransaffron8986?si=m8x8L8AzVkLz0EJp",
     "favicon": "shopify:\/\/shop_images\/Favicon_copy.png",
     "checkout_logo_image": "shopify:\/\/shop_images\/Zaran_Logo_1.jpg",
     "checkout_logo_position": "center",
@@ -108,12 +110,15 @@
       "footer": {
         "type": "footer",
         "blocks": {
-          "footer-0": {
-            "type": "text",
+          "19bbba32-4794-491e-8163-9c4a46278248": {
+            "type": "contact",
             "settings": {
               "title": "Contact",
-              "content": "<p>📞 <strong>(760) 716-8001 <\/strong><\/p><p><strong>  info@zaransaffron.com <\/strong><\/p>",
-              "show_social_media": true
+              "show_footer_logo": true,
+              "show_social_media": true,
+              "phone": "(760) 716-8001",
+              "email": "info@zaransaffron.com",
+              "content": ""
             }
           },
           "footer-1": {
@@ -131,11 +136,12 @@
           }
         },
         "block_order": [
-          "footer-0",
+          "19bbba32-4794-491e-8163-9c4a46278248",
           "footer-1",
           "footer-2"
         ],
         "settings": {
+          "footer_logo": "shopify:\/\/shop_images\/Zaran_Saffron_LOGO_White_19ca3f7b-f245-482f-9e2a-3b205178bc65.png",
           "show_payment_methods": true,
           "show_currency_selector": true,
           "show_locale_selector": true

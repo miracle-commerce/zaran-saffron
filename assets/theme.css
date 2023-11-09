@@ -7499,14 +7499,6 @@ body:not(.features--show-image-zooming) .Image--lazyLoaded.Image--zoomOut {
   color: var(--footer-text-color);
 }
 
-.Footer__Block {
-  margin-top: 48px;
-}
-
-.Footer__Block:first-child {
-  margin-top: 0;
-}
-
 .Footer__Title {
   margin-bottom: 20px;
 }
@@ -7520,11 +7512,21 @@ body:not(.features--show-image-zooming) .Image--lazyLoaded.Image--zoomOut {
 }
 
 .Footer__Aside {
+  padding-top: 20px;
   text-align: center;
 }
 
-.Footer__Inner + .Footer__Aside {
-  margin-top: 65px;
+.Footer__Inner{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 40px;
+  column-gap: 40px;
+  row-gap: 40px;
+}
+
+.Footer__Inner + .Footer__Aside{
+  border-top: 1px dotted var(--footer-heading-color);
 }
 
 .Footer__LocalizationForm {
@@ -7542,9 +7544,8 @@ body:not(.features--show-image-zooming) .Image--lazyLoaded.Image--zoomOut {
 }
 
 .Footer__PaymentList {
-  margin: 54px -24px 0 -24px;
-  padding-top: 28px;
-  border-top: 1px solid var(--footer-border-color);
+  margin: 0px -24px 0 -24px;
+  padding-top: 10px;
 }
 
 .Footer__PaymentList svg {
@@ -7562,24 +7563,9 @@ body:not(.features--show-image-zooming) .Image--lazyLoaded.Image--zoomOut {
     margin-top: 80px;
   }
 
-  .Footer__Inner {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-left: -40px;
-    margin-right: -40px;
-  }
-
   .Footer__Block {
     flex: 1 1 50%;
     margin-top: 0;
-    margin-bottom: 50px;
-    padding-left: 25px;
-    padding-right: 25px;
-  }
-
-  .Footer__Social {
-    margin-top: 14px;
   }
 
   .Footer__Aside {
@@ -7588,10 +7574,6 @@ body:not(.features--show-image-zooming) .Image--lazyLoaded.Image--zoomOut {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-  }
-
-  .Footer__Inner + .Footer__Aside {
-    margin-top: 40px;
   }
 
   .Footer__Localization {
@@ -7608,7 +7590,7 @@ body:not(.features--show-image-zooming) .Image--lazyLoaded.Image--zoomOut {
 
   .Footer__PaymentList {
     padding: 0;
-    margin: 0 -8px;
+    margin: 0;
     border: none;
   }
 }
@@ -7616,12 +7598,6 @@ body:not(.features--show-image-zooming) .Image--lazyLoaded.Image--zoomOut {
 @media screen and (min-width: 1140px) {
   .Footer--withMargin {
     margin-top: 120px;
-  }
-
-  .Footer__Inner {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
   }
 
   .Footer--center .Footer__Inner {
@@ -7636,10 +7612,6 @@ body:not(.features--show-image-zooming) .Image--lazyLoaded.Image--zoomOut {
   .Footer__Block--newsletter {
     flex-basis: 240px;
   }
-
-  .Footer__Inner + .Footer__Aside {
-    margin-top: 80px;
-  }
 }
 
 @media screen and (min-width: 1140px) {
@@ -7648,7 +7620,7 @@ body:not(.features--show-image-zooming) .Image--lazyLoaded.Image--zoomOut {
   }
 
   .Footer__Block--newsletter {
-    flex-basis: 305px;
+    flex-basis: auto;
   }
 }
 .GiftCard {
@@ -11049,9 +11021,26 @@ shopify-payment-terms {
 
 .blackbar
 {
-  background-color: black;
-  color: white;
+  background-color: #ffc300;
+  color: #000;
+  font-weight: 600;
+  font-size: 14px;
   padding: 22px;
+}
+
+@media only screen and (max-width: 640px){
+  .blackbar .Container{
+    display: flex; 
+    flex-wrap: wrap; 
+    column-gap: 20px; 
+    row-gap: 10px;
+    justify-content: center; 
+  }
+
+  .blackbar .menuite{
+    min-width: 250px;
+    text-align: left; 
+  }
 }
 
 .sids
@@ -11865,4 +11854,90 @@ Custom styles for new product template
 .ArticleItem__Link{
   margin-left: 5px; 
   font-weight: 600;
+}
+
+/* ====================================
+Custom styles for footer
+=======================================*/
+footer .Container{
+  max-width: 1600px;
+  padding: 0 40px;
+}
+
+.Footer__Block {
+  font-size: 16px; 
+}
+
+.Footer__Title{
+  font-size: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase; 
+}
+
+.FooterContent__wrapper{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+
+.Footer__StoreName{
+  color: var(--footer-heading-color);
+  font-size: 16px; 
+}
+
+.Footer__Contact.Information{
+  display: flex; 
+  flex-wrap: wrap; 
+  row-gap: 12px;
+}
+
+.footer__contact-item{
+  font-size: 18px;
+  margin: 0;
+  line-height: 1.5;
+  width: 100%;
+}
+
+.footer__contact-item svg.Icon{
+  margin-right: 5px;
+}
+
+.Footer__Newsletter .Form__Submit.Button{
+  border: 1px solid var(--footer-text-color);
+  margin-top: 5px; 
+  width: 100%;
+}
+
+.Footer__Newsletter .Form__Submit.Button::before{
+  display: none;
+}
+
+.Footer__Newsletter .Form__Submit.Button:hover{
+  background-color: var(--footer-text-color);
+  color: var(--footer-background);
+}
+
+
+@media only screen and (min-width: 540px){
+  .Footer__Newsletter{
+    border: 1px solid var(--footer-text-color);
+    border-radius: 5px; 
+    overflow: hidden;
+    position: relative;
+    padding-right: 150px;
+  }
+  
+  
+  .Footer__Newsletter input[type="email"], .Footer__Newsletter .Form__Submit.Button{
+    height: 45px;
+  }
+  
+  .Footer__Newsletter .Form__Submit.Button{
+    position: absolute; 
+    margin: 0; 
+    right: 0; 
+    top: 0;
+    width: auto;
+  }
 }
