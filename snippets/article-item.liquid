@@ -26,8 +26,10 @@
     </h2>
 
     {%- unless template.name == 'article' -%}
-      <p class="ArticleItem__Excerpt">{{ article.excerpt_or_content | strip_html | truncate: 150 }}</p>
-      <a href="{{ article.url }}" class="ArticleItem__Link Link Link--underline">{{ 'blog.article.read_more' | t }}</a>
+      <p class="ArticleItem__Excerpt">
+        {{ article.excerpt_or_content | strip_html | truncate: 150 }}
+        <a href="{{ article.url }}" class="ArticleItem__Link Link">{{ 'blog.article.read_more' | t }}</a>
+      </p>
     {%- endunless -%}
   </div>
 </article>

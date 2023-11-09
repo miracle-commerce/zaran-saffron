@@ -11130,8 +11130,8 @@ shopify-payment-terms {
   flex-wrap: wrap; 
   align-items: center; 
   justify-content: center; 
-  padding: 5px 20px;
-  width: 240px;
+  padding: 5px;
+  /* width: 260px; */
   max-width: 100%;
   margin-left: auto; 
   margin-right: auto;
@@ -11831,4 +11831,20 @@ Custom styles for new product template
 
 .ProductItem__CartButton:hover{
   background-color: #f9bf02;
+}
+
+.PackUnitComparePrice{
+  text-decoration: line-through;
+  margin-left: 5px;
+}
+
+
+.PackUnitComparePrice{
+  display: none; 
+}
+
+
+.ArticleItem__Link{
+  margin-left: 5px; 
+  font-weight: 600;
 }

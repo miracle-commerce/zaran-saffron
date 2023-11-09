@@ -56,8 +56,10 @@
                         <a href="{{ result.url }}">{{ result.title }}</a>
                       </h2>
 
-                      <p class="ArticleItem__Excerpt">{{ result.content | strip_html | truncate: 150 }}</p>
-                      <a href="{{ article.url }}" class="ArticleItem__Link Link Link--underline">{{ 'blog.article.read_more' | t }}</a>
+                      <p class="ArticleItem__Excerpt">
+                        {{ result.content | strip_html | truncate: 150 }}
+                        <a href="{{ article.url }}" class="ArticleItem__Link Link">{{ 'blog.article.read_more' | t }}</a>
+                      </p>
                     </div>
                   </article>
                 {%- endif -%}
