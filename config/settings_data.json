@@ -12,9 +12,9 @@
     "header_background": "#ffffff",
     "header_heading_color": "#1c1b1b",
     "header_light_color": "#6a6a6a",
-    "footer_background": "#ffffff",
+    "footer_background": "#ffc300",
     "footer_heading_color": "#1c1b1b",
-    "footer_text_color": "#6a6a6a",
+    "footer_text_color": "#1c1b1b",
     "navigation_background": "#1c1b1b",
     "navigation_text_color": "#ffffff",
     "newsletter_popup_background": "#1c1b1b",
@@ -65,7 +65,7 @@
           "home_page_only": false,
           "background": "#ffc300",
           "text_color": "#000000",
-          "content": "📞  (760)716-8001 | Customer support",
+          "content": "Sitewide Sale | 20% off Saffron",
           "link": ""
         }
       },
@@ -93,8 +93,8 @@
           "footer-0": {
             "type": "text",
             "settings": {
-              "title": "About the shop",
-              "content": "<p><\/p><p>(760) 716-8001 or info@zaransaffron.com <\/p><p>We want to hear from you! <\/p>",
+              "title": "Contact",
+              "content": "<p>📞 <strong>(760) 716-8001 <\/strong><\/p><p><strong>  info@zaransaffron.com <\/strong><\/p>",
               "show_social_media": true
             }
           },
@@ -128,7 +128,6 @@
         "blocks": {
           "slide-0": {
             "type": "image",
-            "disabled": true,
             "settings": {
               "image": "shopify:\/\/shop_images\/Final.jpg",
               "mobile_image": "shopify:\/\/shop_images\/Final_2_mobile.jpg",
@@ -142,12 +141,11 @@
               "button_2_link": ""
             }
           },
-          "e1e1c7f0-9193-4378-b80f-b4439c3c1ff3": {
+          "b97139fa-9f14-4295-866c-5190812165c7": {
             "type": "image",
-            "disabled": true,
             "settings": {
-              "image": "shopify:\/\/shop_images\/Saffron_Rice4_Ready_copy_4.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/Zaran_Saffron.png",
+              "image": "shopify:\/\/shop_images\/TM3_copy_1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/2gram_1_c04d7f52-0061-4d32-adac-fa021d0447e6.jpg",
               "apply_overlay": false,
               "content_position": "bottomRight",
               "subheading": "",
@@ -158,14 +156,13 @@
               "button_2_link": ""
             }
           },
-          "b97139fa-9f14-4295-866c-5190812165c7": {
+          "dbeff55b-3ae3-460c-ac76-b583042ba2cb": {
             "type": "image",
-            "disabled": true,
             "settings": {
-              "image": "shopify:\/\/shop_images\/TM3_copy_1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/Jalebi01_106657e1-1133-4227-9e1b-046211347025.jpg",
+              "image": "shopify:\/\/shop_images\/Desktop.png",
+              "mobile_image": "shopify:\/\/shop_images\/Mobile.png",
               "apply_overlay": false,
-              "content_position": "bottomRight",
+              "content_position": "bottomLeft",
               "subheading": "",
               "title": "",
               "button_1_text": "",
@@ -190,13 +187,14 @@
               "button_2_link": ""
             }
           },
-          "dbeff55b-3ae3-460c-ac76-b583042ba2cb": {
+          "e1e1c7f0-9193-4378-b80f-b4439c3c1ff3": {
             "type": "image",
+            "disabled": true,
             "settings": {
-              "image": "shopify:\/\/shop_images\/Desktop.png",
-              "mobile_image": "shopify:\/\/shop_images\/Mobile.png",
+              "image": "shopify:\/\/shop_images\/Desktop2_red.png",
+              "mobile_image": "shopify:\/\/shop_images\/Mobile2_red.png",
               "apply_overlay": false,
-              "content_position": "bottomLeft",
+              "content_position": "bottomRight",
               "subheading": "",
               "title": "",
               "button_1_text": "",
@@ -208,10 +206,10 @@
         },
         "block_order": [
           "slide-0",
-          "e1e1c7f0-9193-4378-b80f-b4439c3c1ff3",
           "b97139fa-9f14-4295-866c-5190812165c7",
+          "dbeff55b-3ae3-460c-ac76-b583042ba2cb",
           "7c0d69fc-cef1-467c-a08f-51802f8ef64b",
-          "dbeff55b-3ae3-460c-ac76-b583042ba2cb"
+          "e1e1c7f0-9193-4378-b80f-b4439c3c1ff3"
         ],
         "settings": {
           "show_fullscreen": true,
@@ -546,7 +544,7 @@
           "show_vendor": true,
           "show_sku": false,
           "show_taxes_included": false,
-          "description_below_add_to_cart": false,
+          "description_below_add_to_cart": true,
           "selector_mode": "block",
           "show_color_swatch": false,
           "show_color_carousel": false,
@@ -641,7 +639,6 @@
       },
       "16250961903397fbdc": {
         "type": "background-video",
-        "disabled": true,
         "settings": {
           "section_size": "preserveRatio",
           "video_url": "https:\/\/youtu.be\/F2TDCvTiOeI"
@@ -931,14 +928,13 @@
       "ca99c790-1318-4ccd-b32a-6cc556f9d348": {
         "type": "instafeed",
         "settings": {
-          "heading_size": 20,
+          "heading_size": 28,
           "feed_width": 100,
           "html_area": ""
         }
       },
       "e253d031-4c34-4d1d-97f2-cbb63c1465a5": {
         "type": "featured-product",
-        "disabled": true,
         "settings": {
           "subheading": "",
           "title": "",
@@ -946,8 +942,8 @@
           "product": "saffron-vitamin-gummies",
           "show_vendor": false,
           "show_sku": false,
-          "show_description": false,
-          "description_below_add_to_cart": false,
+          "show_description": true,
+          "description_below_add_to_cart": true,
           "selector_mode": "dropdown",
           "show_color_swatch": false,
           "show_color_carousel": false,
@@ -1027,9 +1023,9 @@
           "image_size": "small",
           "add_spacing": true,
           "expand_collection": false,
-          "stack_on_mobile": false,
+          "stack_on_mobile": true,
           "text_color": "#ffffff",
-          "button_color": "#363636"
+          "button_color": "#202020"
         }
       },
       "article-template": {
@@ -1088,10 +1084,10 @@
       "1625616293ffdc22ad",
       "16250788885e7c03e9",
       "1625510670d25a2d06",
-      "258769ce-9c41-44d8-bdc5-bd4a70eb7e9d",
       "featured-product",
       "16255696564e883ef8",
       "16564733910629346c",
+      "16250961903397fbdc",
       "1da8cb1c-ea57-434b-82f5-957718a0ae4d",
       "1625077345529d6f36",
       "16328605867f4578b0",
@@ -1100,12 +1096,12 @@
       "1627411217e36b98cb",
       "1626370067d33a0628",
       "1625097539f3baa8bf",
-      "16250961903397fbdc",
-      "e253d031-4c34-4d1d-97f2-cbb63c1465a5",
       "4e9d741c-2d1a-4858-8f61-41dcae942bd5",
       "16268069141e6d8afb",
       "collection-list",
+      "258769ce-9c41-44d8-bdc5-bd4a70eb7e9d",
       "d3b6bcec-fced-4f0f-8af7-dbca95fff303",
+      "e253d031-4c34-4d1d-97f2-cbb63c1465a5",
       "1625097680ac835726",
       "ca99c790-1318-4ccd-b32a-6cc556f9d348"
     ],
