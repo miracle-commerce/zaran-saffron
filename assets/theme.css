@@ -2058,6 +2058,18 @@ body:not(.is-tabbing) .flickity-enabled:focus {
   }
 }
 
+/* flickity-fade */
+
+.flickity-enabled.is-fade .flickity-slider > * {
+  pointer-events: none;
+  z-index: 0;
+}
+
+.flickity-enabled.is-fade .flickity-slider > .is-selected {
+  pointer-events: auto;
+  z-index: 1;
+}
+
 /**
  * ----------------------------------------------------------------------------------------------
  * Default styling for site-wide carousel
@@ -4099,6 +4111,8 @@ body:not(.features--show-image-zooming) .Image--lazyLoaded.Image--zoomOut {
 
 .AnnouncementBar__Wrapper {
   padding: 12px 15px;
+  width: 100%;
+  text-align: center; 
 }
 
 .AnnouncementBar__Content {
@@ -11743,6 +11757,10 @@ Custom styles for new product template
 /* .Product__SlideshowNav{
   display: block;
 } */
+
+.AnnouncementBar:not(.flickity-enabled) .AnnouncementBar__Wrapper{
+  display: none; 
+}
 
 .AnnouncementBar__Content.Heading{
   font-size: 15px;

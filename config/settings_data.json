@@ -12,9 +12,9 @@
     "header_background": "#ffffff",
     "header_heading_color": "#1c1b1b",
     "header_light_color": "#6a6a6a",
-    "footer_background": "#ffc300",
-    "footer_heading_color": "#1c1b1b",
-    "footer_text_color": "#1c1b1b",
+    "footer_background": "#1c1b1b",
+    "footer_heading_color": "#ffffff",
+    "footer_text_color": "#ffffff",
     "navigation_background": "#1c1b1b",
     "navigation_text_color": "#ffffff",
     "newsletter_popup_background": "#1c1b1b",
@@ -60,13 +60,31 @@
       },
       "announcement": {
         "type": "announcement",
+        "blocks": {
+          "dcd35c50-aa20-4bbc-9be6-f37089e184b4": {
+            "type": "text",
+            "settings": {
+              "content": "Sitewide Sale | 20% off Saffron",
+              "link": ""
+            }
+          },
+          "501c14fc-3a6c-4d2a-8373-3388d7bf5199": {
+            "type": "text",
+            "settings": {
+              "content": "📞 (760) 716-8001",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "dcd35c50-aa20-4bbc-9be6-f37089e184b4",
+          "501c14fc-3a6c-4d2a-8373-3388d7bf5199"
+        ],
         "settings": {
           "enable_bar": true,
           "home_page_only": false,
           "background": "#ffc300",
-          "text_color": "#000000",
-          "content": "Sitewide Sale | 20% off Saffron",
-          "link": ""
+          "text_color": "#000000"
         }
       },
       "header": {
@@ -1186,8 +1204,7 @@
           "type": "announcement",
           "settings": {
             "background": "#000000",
-            "text_color": "#ffffff",
-            "content": "Announce something here"
+            "text_color": "#ffffff"
           }
         },
         "header": {
@@ -1574,8 +1591,7 @@
           "type": "announcement",
           "settings": {
             "background": "#f3f3f3",
-            "text_color": "#5c5c5c",
-            "content": "Announce something here"
+            "text_color": "#5c5c5c"
           }
         },
         "header": {
@@ -1963,8 +1979,7 @@
           "type": "announcement",
           "settings": {
             "background": "#f1e4d8",
-            "text_color": "#343434",
-            "content": "Announce something here"
+            "text_color": "#343434"
           }
         },
         "header": {
